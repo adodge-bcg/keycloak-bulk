@@ -47,11 +47,6 @@ class Keycloak {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
         username, firstName, lastName, email, enabled,
-        credentials: [{
-          temporary: true,
-          type: 'password',
-          value: initialPassword,
-        }]
       }),
     })
     return new User(json);
