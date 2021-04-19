@@ -30,6 +30,34 @@ export const notifyImportUser = (index, resource) => ({
   resource
 })
 
+export const loadGroups = () => ({
+  type: types.LOAD_GROUPS,
+  promise: keycloak.loadGroups()
+})
+
+export const updateImportGroupsText = text => ({
+  type: types.UPDATE_IMPORT_GROUPS_TEXT,
+  text
+})
+
+/**
+ * Import groups.
+ * @param {ImportGroup[]} importGroups 
+ */
+export const executeImportGroups = importGroups => ({
+  type: types.EXECUTE_IMPORT_GROUPS,
+  promise: dispatch =>
+    keycloak.createGroups(
+      importGroups.map(importGroup => importGroup.group),
+      (index, resource) => dispatch(notifyImportGroup(index, resource)))
+})
+
+export const notifyImportGroup = (index, resource) => ({
+  type: types.NOTIFY_IMPORT_GROUP,
+  index,
+  resource
+})
+
 export const selectTab = name => ({
   type: types.SELECT_TAB,
   name

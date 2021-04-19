@@ -6,6 +6,7 @@ import ExportUsers from '../containers/ExportUsers';
 import ImportUsers from '../containers/ImportUsers';
 import SignInLanding from '../containers/SignInLanding';
 import SignInCallback from '../containers/SignInCallback';
+import ImportGroups from '../containers/ImportGroups';
 
 const App = () => (
   <div>
@@ -14,6 +15,7 @@ const App = () => (
       <Route exact path="/" component={Home} />
       <Route exact path="/export" component={ExportUsers} />
       <Route exact path="/import" component={ImportUsers} />
+      <Route exact path="/groups" component={ImportGroups} />
       <Route exact path="/signin" component={SignInLanding} />
       <Route exact path="/signin/callback" component={SignInCallback} />
     </div>

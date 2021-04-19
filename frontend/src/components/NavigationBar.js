@@ -10,10 +10,13 @@ const NavigationBar = ({ pathname, isAuthenticated }) => (
     {isAuthenticated ? (
       <ul className="navbar-nav mr-auto">
         <li className={`nav-item ${pathname === '/import' ? 'active' : ''}`}>
-          <Link className="nav-link" to="/import">Import</Link>
+          <Link className="nav-link" to="/import">Import Users</Link>
         </li>
         <li className={`nav-item ${pathname === '/export' ? 'active' : ''}`}>
-          <Link className="nav-link" to="/export">Export</Link>
+          <Link className="nav-link" to="/export">Export Users</Link>
+        </li>
+        <li className={`nav-item ${pathname === '/groups' ? 'active' : ''}`}>
+          <Link className="nav-link" to="/groups">Import Groups</Link>
         </li>
       </ul>
     ) : null}
