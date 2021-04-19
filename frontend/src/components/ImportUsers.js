@@ -15,7 +15,7 @@ const ImportUsers = ({ text, importUsers, statuses, onTextChange, onSubmit }) =>
     <p>
       Enter users in CSV (comma) or TSV (tab).
       <br />
-      Format: <code>Username,FirstName,LastName,Email,InitialPassword</code>
+      Format: <code>Username,FirstName,LastName,Email,InitialPassword,Groups(separated by "|")</code>
     </p>
     <ImportUsersInput value={text} onChange={onTextChange} />
 

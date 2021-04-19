@@ -10,9 +10,9 @@ export default class UserFactory {
   static parseText(text) {
     return Seq(text.split(/\n/))
       .map(line => line.split(/,|\t/))
-      .filter(columns => columns.length === 5)
-      .map(([username, firstName, lastName, email, initialPassword]) =>
-        new User({ username, initialPassword, firstName, lastName, email }))
+      .filter(columns => columns.length === 6)
+      .map(([username, firstName, lastName, email, initialPassword, groups]) =>
+        new User({ username, initialPassword, firstName, lastName, email, groups }))
       .toArray();
   }
 }
