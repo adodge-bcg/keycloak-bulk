@@ -41,17 +41,22 @@ class Keycloak {
    * @returns {Promise<User>}
    */
   async createUser(user) {
-    const { username, initialPassword, firstName, lastName, email, enabled } = user;
+    const { username, initialPassword, firstName, lastName, email, enabled, groups } = user;
+    const credentials = [];
+    if (initialPassword !== "") {
+      credentials.push({
+        temporary: true,
+        type: 'password',
+        value: initialPassword,
+      })
+    }
     const json = await this.fetchJSON('/api/users', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
         username, firstName, lastName, email, enabled,
-        credentials: [{
-          temporary: true,
-          type: 'password',
-          value: initialPassword,
-        }]
+        credentials,
+        groups: groups.split("|")
       }),
     })
     return new User(json);

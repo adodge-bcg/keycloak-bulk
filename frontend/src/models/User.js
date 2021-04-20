@@ -8,5 +8,6 @@ export default class User extends Record({
   lastName: null,
   email: null,
   enabled: true,
+  groups: null
 }) {
 }
