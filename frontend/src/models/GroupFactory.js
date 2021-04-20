@@ -8,11 +8,8 @@ export default class GroupFactory {
    * @returns {Group[]}
    */
   static parseText(text) {
-    return Seq(text.split(/\n/))
-      .map(line => line.split(/,|\t/))
-      .filter(columns => columns.length === 1)
-      .map(([name]) =>
-        new Group({ name }))
-      .toArray();
+    return Seq(text.split(/,|\t/))
+    .map((name) => new Group({ name }))
+    .toArray();
   }
 }

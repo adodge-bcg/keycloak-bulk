@@ -5,7 +5,7 @@ import ImportGroups from '../components/ImportGroups';
 const mapStateToProps = state => {
   return {
     text: state.importGroupsText,
-    importGroups: state.ImportGroups,
+    importGroups: state.importGroups,
   }
 }
 

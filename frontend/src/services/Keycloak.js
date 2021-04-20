@@ -1,5 +1,6 @@
 import oidc from './OIDC';
 import User from '../models/User';
+import Group from '../models/Group';
 import ResourceError from '../models/ResourceError';
 import Resource from '../models/Resource';
 
@@ -55,6 +56,54 @@ class Keycloak {
       }),
     })
     return new User(json);
+  }
+
+  /**
+   * Load groups.
+   * @returns {Promise<User[]>}
+   */
+  async loadGroups() {
+    const json = await this.fetchJSON('/api/groups');
+    if (json instanceof Array) {
+      return json.map(group => new Group(group));
+    } else {
+      throw new TypeError(`Unexpected response type: ${json}`);
+    }
+  }
+
+  /**
+   * Create groups.
+   * @param {Group[]} groups array of groups
+   * @param {(index: Number, resource: Resource) => void} notify progress notification callback
+   */
+  async createGroups(groups, notify = (index, resource) => { }) {
+    for (let index = 0; index < groups.length; index++) {
+      const group = groups[index];
+      notify(index, new Resource({ isLoading: true }));
+      try {
+        const value = await this.createGroup(group);
+        notify(index, new Resource({ value }));
+      } catch (error) {
+        notify(index, new Resource({ error }));
+      }
+    }
+  }
+
+  /**
+   * Create a group with a name.
+   * @param {Group} group 
+   * @returns {Promise<Group>}
+   */
+  async createGroup(group) {
+    const { name } = group;
+    const json = await this.fetchJSON('/api/groups', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        name
+      }),
+    })
+    return new Group(json);
   }
 
   /**

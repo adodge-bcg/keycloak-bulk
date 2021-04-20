@@ -4,9 +4,9 @@ import NavigationBar from '../containers/NavigationBar';
 import Home from '../containers/Home';
 import ExportUsers from '../containers/ExportUsers';
 import ImportUsers from '../containers/ImportUsers';
+import ImportGroups from '../containers/ImportGroups';
 import SignInLanding from '../containers/SignInLanding';
 import SignInCallback from '../containers/SignInCallback';
-import ImportGroups from '../containers/ImportGroups';
 
 const App = () => (
   <div>

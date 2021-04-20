@@ -4,3 +4,5 @@ export const INITIAL_IMPORT_USERS_TEXT = `\
 alice,Alice,Foo,alice@example.com,${randomString()}
 bob,Bob,Bar,bob@example.com,${randomString()}
 `
+
+export const INITIAL_IMPORT_GROUPS_TEXT = `user-group,admin-group,edit-group`
