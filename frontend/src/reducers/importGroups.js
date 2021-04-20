@@ -9,7 +9,7 @@ import Resource from '../models/Resource';
 const importGroupsOf = text =>
   GroupFactory.parseText(text).map(group => new ImportGroup({ group }))
 
-export default (state = new Resource({ value: importGroupsOf(INITIAL_IMPORT_GROUPS_TEXT) }), action) => {
+const ImportGroups = (state = new Resource({ value: importGroupsOf(INITIAL_IMPORT_GROUPS_TEXT) }), action) => {
   const { type } = action;
   switch (type) {
     case types.UPDATE_IMPORT_GROUPS_TEXT:
@@ -35,3 +35,5 @@ export default (state = new Resource({ value: importGroupsOf(INITIAL_IMPORT_GROU
       return state;
   }
 }
+
+export default ImportGroups

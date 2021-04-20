@@ -2,7 +2,7 @@ import { handle } from 'redux-pack';
 import * as types from '../actions/types';
 import Resource from '../models/Resource';
 
-export default (state = new Resource(), action) => {
+const Users = (state = new Resource(), action) => {
   const { type, payload } = action;
   switch (type) {
     case types.LOAD_USERS:
@@ -16,3 +16,5 @@ export default (state = new Resource(), action) => {
       return state;
   }
 }
+
+export default Users

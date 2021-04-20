@@ -9,7 +9,7 @@ import Resource from '../models/Resource';
 const importUsersOf = text =>
   UserFactory.parseText(text).map(user => new ImportUser({ user }))
 
-export default (state = new Resource({ value: importUsersOf(INITIAL_IMPORT_USERS_TEXT) }), action) => {
+const ImportUsers = (state = new Resource({ value: importUsersOf(INITIAL_IMPORT_USERS_TEXT) }), action) => {
   const { type } = action;
   switch (type) {
     case types.UPDATE_IMPORT_USERS_TEXT:
@@ -35,3 +35,5 @@ export default (state = new Resource({ value: importUsersOf(INITIAL_IMPORT_USERS
       return state;
   }
 }
+
+export default ImportUsers
