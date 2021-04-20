@@ -28,6 +28,7 @@ const UserRow = ({ index, user, resource }) => (
     <td>{user.firstName} {user.lastName}</td>
     <td>{user.email}</td>
     <td>{user.initialPassword}</td>
+    <td>{user.groups}</td>
     <td>
       {resource ?
         <ResourceColumn resource={resource} /> :
@@ -50,6 +51,7 @@ const ImportUsersList = ({ importUsers }) => (
         <th>Name</th>
         <th>Email</th>
         <th>Initial Password</th>
+        <th>Groups</th>
         <th>Status</th>
       </tr>
     </thead>
