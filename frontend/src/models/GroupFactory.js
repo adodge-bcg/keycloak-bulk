@@ -8,7 +8,7 @@ export default class GroupFactory {
    * @returns {Group[]}
    */
   static parseText(text) {
-    return Seq(text.split(/,|\t/))
+    return Seq(text.split(/\n/))
     .map((name) => new Group({ name }))
     .toArray();
   }

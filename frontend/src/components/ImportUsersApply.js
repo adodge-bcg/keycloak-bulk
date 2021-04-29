@@ -4,15 +4,15 @@ import LoadingSpinner from './LoadingSpinner';
 import Resource from '../models/Resource';
 import ErrorAlert from './ErrorAlert';
 
-const Submit = () => (
+const Submit = ({value}) => (
   <button type="submit" className="btn btn-primary">
-    Import Users
+    {value}
   </button>
 )
 
-const ImportUsersApply = ({ resource, onSubmit }) => (
+const ImportUsersApply = ({ resource, onSubmit, value }) => (
   <form onSubmit={e => { onSubmit(); e.preventDefault() }}>
-    {resource.isLoading === true ? <LoadingSpinner /> : <Submit />}
+    {resource.isLoading === true ? <LoadingSpinner /> : <Submit value={value} />}
     {resource.error ? <ErrorAlert error={resource.error} /> : null}
   </form>
 )

@@ -13,6 +13,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onTextChange: value => dispatch(creators.updateImportGroupsText(value)),
     onSubmit: importGroups => dispatch(creators.executeImportGroups(importGroups)),
+    onDelete: importGroups => dispatch(creators.executeDeleteGroups(importGroups)),
   }
 }
 

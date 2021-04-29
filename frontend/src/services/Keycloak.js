@@ -65,7 +65,7 @@ class Keycloak {
 
   /**
    * Load groups.
-   * @returns {Promise<User[]>}
+   * @returns {Promise<Group[]>}
    */
   async loadGroups() {
     const json = await this.fetchJSON('/api/groups');
@@ -111,6 +111,36 @@ class Keycloak {
     return new Group(json);
   }
 
+  async deleteGroups(groups, notify = (index, resource) => { }) {
+    const curentGroups = this.loadGroups();
+
+    for (let index = 0; index < groups.length; index++) {
+      const group = groups[index];
+      notify(index, new Resource({ isLoading: true }));
+      try {
+        const found = (await curentGroups).find(element => element.name === group.name);
+
+        if (found) {
+          const value = await this.deleteGroup(found);
+          notify(index, new Resource( { value }));
+        }
+      } catch (error) {
+        notify(index, new Resource( { error }));
+      }
+    }
+  }
+
+  async deleteGroup(group) {
+    const { id } = group;
+
+    const json = await this.fetchJSON(`/api/groups/${id}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json' },
+    })
+
+    return json;
+  }
+
   /**
    * Fetch JSON.
    * @param {string} uri 
@@ -129,7 +159,12 @@ class Keycloak {
           ...options.headers
         }
       });
-      value = await response.json();
+
+      if (response.status === 204) {
+        value = { message: "Deleted" };
+      } else {
+        value = await response.json();
+      }
     } catch (e) {
       throw new ResourceError({ code: typeof e, message: `${e}` });
     }

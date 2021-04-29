@@ -29,7 +29,7 @@ const ImportUsers = ({ text, importUsers, statuses, onTextChange, onSubmit }) =>
       <div className="card-body">
         <h5 className="card-title">Confirmation</h5>
         <p className="card-text">Click the button to import {importUsers.value.length} users to the Keycloak.</p>
-        <ImportUsersApply resource={importUsers} onSubmit={e => onSubmit(importUsers.value)} />
+        <ImportUsersApply resource={importUsers} onSubmit={e => onSubmit(importUsers.value)} value="Import Users" />
       </div>
     </div>
   </div>

@@ -12,11 +12,16 @@ const Badge = ({ type, children }) =>
 const ResourceColumn = ({ resource }) => (
   <div>
     {resource.isLoading ? <LoadingSpinner /> : null}
-    {resource.value ? (
+    {resource.value ? resource.value.message ? (
       <div>
-        <Badge type="success">Created</Badge>
+        <Badge type="danger">Deleted</Badge>
       </div>
-    ) : null}
+    ) :
+    (
+        <div>
+          <Badge type="success">Created</Badge>
+        </div>
+      ) : null}
     {resource.error ? <ErrorAlert error={resource.error} /> : null}
   </div>
 )

@@ -52,6 +52,14 @@ export const executeImportGroups = importGroups => ({
       (index, resource) => dispatch(notifyImportGroup(index, resource)))
 })
 
+export const executeDeleteGroups = importGroups => ({
+  type: types.EXECUTE_DELETE_GROUPS,
+  promise: dispatch =>
+    keycloak.deleteGroups(
+      importGroups.map(importGroup => importGroup.group),
+      (index, resource) => dispatch(notifyImportGroup(index, resource)))
+})
+
 export const notifyImportGroup = (index, resource) => ({
   type: types.NOTIFY_IMPORT_GROUP,
   index,

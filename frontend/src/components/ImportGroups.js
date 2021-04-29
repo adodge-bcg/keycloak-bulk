@@ -5,7 +5,7 @@ import ImportGroupsList from './ImportGroupsList'
 import ImportUsersApply from './ImportUsersApply'
 import Resource from '../models/Resource';
 
-const ImportGroups = ({ text, importGroups, statuses, onTextChange, onSubmit }) => (
+const ImportGroups = ({ text, importGroups, statuses, onTextChange, onSubmit, onDelete }) => (
   <div>
     <br />
     <h2>Import Groups</h2>
@@ -29,7 +29,10 @@ const ImportGroups = ({ text, importGroups, statuses, onTextChange, onSubmit }) 
       <div className="card-body">
         <h5 className="card-title">Confirmation</h5>
         <p className="card-text">Click the button to import {importGroups.value.length} groups to the Keycloak.</p>
-        <ImportUsersApply resource={importGroups} onSubmit={e => onSubmit(importGroups.value)} />
+        <div className="btn-group d-flex justify-content-between" role="group" aria-label="Import and Delete Buttons">
+          <ImportUsersApply resource={importGroups} onSubmit={e => onSubmit(importGroups.value)} value="Import Groups" />
+          <ImportUsersApply resource={importGroups} onSubmit={e => onDelete(importGroups.value)} value="Delete Groups" />
+        </div>
       </div>
     </div>
   </div>
