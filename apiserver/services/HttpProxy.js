@@ -33,11 +33,10 @@ module.exports = class HttpClient {
       const contentType = response.headers.get('content-type');
       if (contentType === 'application/json') {
         ctx.status = response.status;
-        
         ctx.body = await response.json();
       } else if (ctx.method === 'DELETE') {
         ctx.status = response.status;
-        ctx.body = await response
+        ctx.body = await response;
       } else {
         ctx.status = 500;
         ctx.body = { error: 'invalid_response', error_message: `Unexpected response type: ${contentType}` }
