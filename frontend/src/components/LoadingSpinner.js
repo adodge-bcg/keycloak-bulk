@@ -1,3 +1,5 @@
 import React from 'react'
 
-export default () => (<div className="cssload-spin-box" />)
+const LoadingSpinner = () => (<div className="cssload-spin-box" />);
+
+export default  LoadingSpinner

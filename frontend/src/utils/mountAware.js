@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default renderer => class extends React.Component {
+const MountAware = renderer => class extends React.Component {
   render() {
     return renderer(this.props);
   }
@@ -8,3 +8,5 @@ export default renderer => class extends React.Component {
     this.props.onMount();
   }
 }
+
+export default MountAware

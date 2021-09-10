@@ -25,5 +25,9 @@ const proxy = async ctx => {
 router.get('/api/users', proxy);
 router.post('/api/users', proxy);
 router.get('/api/users/:id', proxy);
+router.get('/api/groups', proxy);
+router.post('/api/groups', proxy);
+router.del('/api/groups/:id', proxy);
+router.get('/api/groups/:id', proxy);
 
 module.exports = router;

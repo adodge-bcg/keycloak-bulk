@@ -2,10 +2,10 @@ import { handle } from 'redux-pack';
 import * as types from '../actions/types';
 import Resource from '../models/Resource';
 
-const Users = (state = new Resource(), action) => {
+const Groups = (state = new Resource(), action) => {
   const { type, payload } = action;
   switch (type) {
-    case types.LOAD_USERS:
+    case types.LOAD_GROUPS:
       return handle(state, action, {
         start: prevState => prevState.merge({ isLoading: true, error: null }),
         finish: prevState => prevState.merge({ isLoading: false }),
@@ -17,4 +17,4 @@ const Users = (state = new Resource(), action) => {
   }
 }
 
-export default Users
+export default Groups

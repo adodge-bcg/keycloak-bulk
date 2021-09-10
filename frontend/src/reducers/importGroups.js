@@ -1,22 +1,22 @@
 import { handle } from 'redux-pack';
 import { List } from 'immutable';
-import { INITIAL_IMPORT_USERS_TEXT } from '../constants'
+import { INITIAL_IMPORT_GROUPS_TEXT } from '../constants'
 import * as types from '../actions/types'
-import UserFactory from '../models/UserFactory'
-import ImportUser from '../models/ImportUser'
+import GroupFactory from '../models/GroupFactory'
+import ImportGroup from '../models/ImportGroup'
 import Resource from '../models/Resource';
 
-const importUsersOf = text =>
-  UserFactory.parseText(text).map(user => new ImportUser({ user }))
+const importGroupsOf = text =>
+  GroupFactory.parseText(text).map(group => new ImportGroup({ group }))
 
-const ImportUsers = (state = new Resource({ value: importUsersOf(INITIAL_IMPORT_USERS_TEXT) }), action) => {
+const ImportGroups = (state = new Resource({ value: importGroupsOf(INITIAL_IMPORT_GROUPS_TEXT) }), action) => {
   const { type } = action;
   switch (type) {
-    case types.UPDATE_IMPORT_USERS_TEXT:
+    case types.UPDATE_IMPORT_GROUPS_TEXT:
       let { text } = action;
-      return state.merge({ value: importUsersOf(text) });
+      return state.merge({ value: importGroupsOf(text) });
 
-    case types.EXECUTE_IMPORT_USERS:
+    case types.EXECUTE_IMPORT_GROUPS:
       let { payload } = action;
       return handle(state, action, {
         start: prevState => prevState.merge({ isLoading: true, error: null }),
@@ -25,7 +25,7 @@ const ImportUsers = (state = new Resource({ value: importUsersOf(INITIAL_IMPORT_
         success: prevState => prevState,
       });
 
-    case types.NOTIFY_IMPORT_USER:
+    case types.NOTIFY_IMPORT_GROUP:
       let { index, resource } = action;
       let list = List(state.value);
       let altered = list.set(index, list.get(index).merge({ resource })).toArray();
@@ -36,4 +36,4 @@ const ImportUsers = (state = new Resource({ value: importUsersOf(INITIAL_IMPORT_
   }
 }
 
-export default ImportUsers
+export default ImportGroups

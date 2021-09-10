@@ -1,6 +1,6 @@
 import oidc from '../services/OIDC';
 
-export default (state = {
+const SignIn = (state = {
   isAuthenticated: oidc.getAuthorizationHeader() !== undefined,
 }, action) => {
   const { type } = action;
@@ -9,3 +9,5 @@ export default (state = {
       return state;
   }
 }
+
+export default SignIn

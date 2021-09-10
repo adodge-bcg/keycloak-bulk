@@ -33,7 +33,7 @@ module.exports = class OIDC {
   }
 
   async getSessionToken(redirect_uri, state, nonce, query) {
-    const tokenSet = await this.client.authorizationCallback(redirect_uri, query, { state, nonce });
+    const tokenSet = await this.client.callback(redirect_uri, query, { state, nonce });
     return new SessionToken(tokenSet);
   }
 
